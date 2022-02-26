@@ -1,0 +1,30 @@
+<h1>Billboard Data </h1>
+<table>
+<tr>
+    
+    <thread>
+    <th>Company</th>
+    <th>Name</th>
+    <th>price</th>
+    <th>type</th>
+    <th>status</th>
+    <th>viewership_count</th>
+    <th>location</th>
+    <th>image</th>
+    </thread>
+</tr>
+        <% @board.each do |board| %>
+    <tr>
+    <td> <%=board.name %></td>
+    <td> <%=board.company_name %></td>
+    <td> <%=board.price %></td>
+    <td> <%=board.tpye %></td>
+    <td> <%=board.status %></td>
+    <td> <%=board.viewership_count %></td>
+    <td> <%=board.location %></td>
+    <%if board.image.present?%>
+        <td><%=  image_tag(board.image, :size => "260x180")%></td>
+    <%end%>     
+    </tr>
+        <%end%>
+</table> 

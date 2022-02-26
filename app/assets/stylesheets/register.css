@@ -1,0 +1,22 @@
+.register-imput-field {
+    margin-top: 300px;
+    border: 2px solid black;
+}
+
+.signup-fields {
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.sign-btn {
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 3%;
+}
+
+.p {
+    width: 100px;
+    color: rgb(192, 37, 37);
+    margin-top: 100px;
+}

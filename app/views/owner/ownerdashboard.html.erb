@@ -1,0 +1,33 @@
+
+  <div class="tnavbar">
+  <div class="tlogo">
+      <%= image_tag('1.png', :class => "logoimg") %>
+      <h3 class="title"> Out of Home</h3>
+  </div>
+  
+  <div>
+  <% if @user %>
+    <%= button_to "Logout" , logout_path,method: :delete %>
+<% end %>  
+  </div>
+</div>
+  
+  
+<div class="dash-content">
+    <div class="sidebar">
+        <div class="company-name"><h3>
+        <% if @user %>
+            <%= @user.company_name %>
+        <% end %> 
+
+        </h3></div>
+        <div class='item'>Profile</div>
+        <%= link_to "Add BillBoard", addbillboard_path, class:"item2"%>
+        <div class='item'>Manage BillBoard</div>
+        <div class='item'>Payment Details</div>
+        <div class='item'>Book Request</div>
+        <%= link_to "Show BillBoards", showboards_path, class:"item2"%>
+        <div class='item'>Booked BillBoards</div>
+    </div>
+    <div class='item-data'></div>
+</div>
