@@ -11,14 +11,15 @@
   </div>
 
   <div>
-      <a class="home-btn" href="#">Home</a> 
+     
+      <%= link_to "Home", root_path, class:"home-btn"%> 
       <%= link_to "Signup", register_path, class:"home-btn"%> 
   </div>
 </div>
   
   
   
-  <div class="container-fluid" style="margin-top:50px;">
+  <div class="container-fluid set">
     <div class="row loginpagerow">
     <div class="col-1">
     </div>
@@ -36,7 +37,12 @@
     <div class="col-4 logincol loginbox">
         <h1 class="Login-here">Login Here</h1>
       <div class="login-form">
-        <%= form_with  do |form| %>
+        <%= form_with model:@owner,url:login_path do |form|%>
+          <% flash.each do |type, msg| %>
+            <div class="alert alert-info">
+              <%= msg %>
+            </div>
+          <% end %>
           <div class="mb-3 login-input">
           <%= form.label:email %>
           <%= form.text_field :email ,class: "form-control login-email-field", placeholder:"xyz@gmail.com" %>

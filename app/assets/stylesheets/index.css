@@ -21,8 +21,13 @@ body {
 }
 
 .slider {
-    /* padding: 100px; */
-    margin: 50px;
+    /* margin: 50px; */
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin-left: 10%;
+    padding-top: 10vh;
+    /* height: 700px; */
 }
 
 .heading {
@@ -66,4 +71,10 @@ body {
     font-size: 20px;
     font-weight: bold;
     font-family: "Roboto";
+}
+
+.headingtext {
+    display: block;
+    margin-top: 120px;
+    margin-bottom: 130px;
 }

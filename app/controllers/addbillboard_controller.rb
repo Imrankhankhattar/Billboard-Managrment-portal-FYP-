@@ -6,15 +6,18 @@ class AddbillboardController < ApplicationController
         end
     end
     def addboard
-            @board=Board.new(board_params)
-            if @board.save
+            @board = Board.new(board_params)
+            @user = Owner.find_by(id: session[:user_id])
+            if @board.save!
                 redirect_to owner_path
             else
-                flash[:error] ="User Not Registered"
-            end        
-    end   
-    private  
+                flash[:error] = 'User Not Registered'
+            end
+    end
+    
+    private
+    
     def board_params()
-        params.permit(:name, :company_name, :screen_size,:location, :price, :status, :viewership_count, :tpye, :image)
-    end 
+        params.permit(:name ,:owner_id, :company_name, :screen_size, :location, :price, :status, :viewership_count, :tpye, :image)
+    end
 end

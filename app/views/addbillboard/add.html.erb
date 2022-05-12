@@ -5,11 +5,7 @@
       <h3 class="title"> Out of Home</h3>
   </div>
   
-  <div>
-  <% if @user %>
-    <%= button_to "Logout" , logout_path,method: :delete %>
-<% end %>  
-  </div>
+
 </div>
   
   
@@ -39,29 +35,29 @@
                 </div>
 
                 <div class="add-input-field">
-                <%= form.text_field :name ,class: "add", placeholder:"billboard Name" %>
-                <%= form.text_field :company_name ,class: "add", placeholder:"Company Name" %>
+                <%= form.text_field :name ,class: "add", placeholder:"billboard Name",required:true%>
+                <%= form.text_field :location ,class: "add", placeholder:"Location",required:true %>
+                <%= form.hidden_field :company_name ,value:(@user.company_name if @user) %>
+                <%= form.hidden_field :owner_id ,value:(@user.id if @user) %>
+                <%= form.hidden_field :status ,:value=>"Available" %>
                 </div>
                 <div class="add-input-field">
-                <%= form.text_field :location ,class: "add", placeholder:"Location" %>
-                <%= form.text_field :screen_size ,class: "add", placeholder:"Screen Size" %>
+                <%= form.text_field :screen_size ,class: "add", placeholder:"Screen Size (60x30)",required:true %>
+                <%= form.select :tpye, ['OOH', 'DOOH'],{ include_blank: "Select Type" },class: "add",required:true%>
                 </div>
                 <div class="add-input-field">
-                <%= form.text_field :price ,class: "add", placeholder:"Price" %>
-                <%= form.text_field :status ,class: "add", placeholder:"Status" %>
+                <%= form.text_field :price ,class: "add", placeholder:"Price",required:true %>
+                <%= form.text_field :viewership_count ,class: "add", placeholder:"Viewership count",required:true %>
                 </div>
-                <div class="add-input-field">
-                <%= form.text_field :tpye ,class: "add", placeholder:"Type" %>
-                <%= form.text_field :viewership_count ,class: "add", placeholder:"Viewership count" %>
-                </div>
+
                 <div class="add-input-field">
                 <%= form.file_field :image ,class: "add" %>
                 </div>
                 
                 <div class="add-input-field">
-                <%= form.submit "Cancel" ,class: " btn btn-primary add"%>
+                <%= link_to "Cancel", owner_path ,class: " btn btn-primary add" %>  
                 <%= form.submit "Add Billboard",class: " btn btn-primary add"%>
-                
+                 
                 </div>
 
 

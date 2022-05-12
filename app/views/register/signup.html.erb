@@ -12,13 +12,13 @@
   </div>
 
   <div>
-  
-  <%= link_to "login", login_path, class:"home-btn"%>
+  <%= link_to "Home", root_path, class:"home-btn"%> 
+  <%= link_to "Login", login_path, class:"home-btn"%>
   </div>
 </div>
 
 
-<div class="container-fluid" style="margin-top:50px;">
+<div class="container-fluid set">
   <div class="row loginpagerow">
   <div class="col-1">
   </div>
@@ -44,14 +44,25 @@
           <div style="width:45%; height:35vh; margin-left:25px;">
               <%= form.email_field :email ,class: "form-control login-email-field signup-fields", placeholder:"Email" %>
               <%= form.text_field :company_name ,class: "form-control login-email-field signup-fields", placeholder:"Company Name" %>
-              <%= form.text_field :address ,class: "form-control login-email-field signup-fields", placeholder:"Address" %>
+              <%= form.text_field :address ,class: "form-control login-email-field signup-fields", placeholder:"City" %>
 
+              <h5 style="margin-top:40px;color:white; "><b>Sign Up as : </b></h5>
+
+              <div class="radio">
+              <label for="cc_bank" style="color:white; "><b>Owner</b></label>
+              <%= form.radio_button :status ,'owner'%>
+              <label for="cc_bank" style="color:white; "><b>Client</b></label>
+              <%= form.radio_button :status ,'b'%>
+              </div>
           </div>
           <div style="width:45%; height:35vh; margin-left:25px;">
              <%= form.telephone_field :contact_no ,class: "form-control login-email-field signup-fields", placeholder:"Contact No" %>
               <%= form.password_field :password ,class: "form-control login-email-field signup-fields", placeholder:"password" %>
               <%= form.password_field :password_confirmation,class: "form-control login-email-field signup-fields", placeholder:"Confirm password" %>
           </div>
+
+
+
           <div class="mb-3 login-input">
              <%= form.submit "Signup" ,class: "sign-btn btn btn-primary"%>
           </div>

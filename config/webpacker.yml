@@ -22,7 +22,7 @@ default: &default
     - .jpg
     - .jpeg
     - .png
-    - .gif 
+    - .gif
     - .tiff
     - .ico
     - .svg

@@ -1,18 +1,23 @@
 class LoginController < ApplicationController
-    def new
-    end    
+
     def create
-        user=Owner.find_by(email: params[:email])
-        if user.present? && user.authenticate(params[:password])
-            session[:user_id] = user.id
-            redirect_to owner_path, notice: "Login Successfull"
+        
+        owner = Owner.find_by(email: params[:email])
+        client = Client.find_by(email: params[:email])
+        if owner.present? && owner.authenticate(params[:password])
+            session[:user_id] = owner.id
+            redirect_to owner_path
+        elsif client.present? && client.authenticate(params[:password])
+            # flash[:alert] = "Email or password is invalid."
+            session[:user_id] = client.id
+            redirect_to client_path
         else
-            flash[:alert] = "Email or password is invalid. Please try again"
+             
              
         end     
     end    
     def destroy
         session[:user_id] = nil
-        redirect_to login_path,notice: "Logged out"
+        redirect_to login_path
     end  
 end

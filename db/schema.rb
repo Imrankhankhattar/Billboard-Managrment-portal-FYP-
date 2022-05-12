@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_14_120840) do
+ActiveRecord::Schema.define(version: 2022_04_24_114725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,32 @@ ActiveRecord::Schema.define(version: 2022_02_14_120840) do
     t.string "location"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "owner_id", null: false
+    t.index ["owner_id"], name: "index_boards_on_owner_id"
+  end
+
+  create_table "client_boards", force: :cascade do |t|
+    t.bigint "client_id", null: false
+    t.bigint "board_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.bigint "total_bill"
+    t.integer "content_approved", default: 0, null: false
+    t.integer "payment_approved", default: 0, null: false
+    t.index ["board_id"], name: "index_client_boards_on_board_id"
+    t.index ["client_id"], name: "index_client_boards_on_client_id"
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "email"
+    t.string "company_name"
+    t.string "address"
+    t.bigint "contact_no"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "password_digest"
   end
 
   create_table "owners", force: :cascade do |t|
@@ -68,4 +94,7 @@ ActiveRecord::Schema.define(version: 2022_02_14_120840) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "boards", "owners"
+  add_foreign_key "client_boards", "boards"
+  add_foreign_key "client_boards", "clients"
 end
