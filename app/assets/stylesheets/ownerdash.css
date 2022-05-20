@@ -81,3 +81,13 @@
     align-items: center;
     padding-left: 15%;
 }
+
+.item-data-boardimage {
+    height: 90vh;
+    background-color: rgb(153, 216, 221);
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

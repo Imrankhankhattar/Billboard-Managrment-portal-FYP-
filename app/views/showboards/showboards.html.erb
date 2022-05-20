@@ -24,13 +24,14 @@
 
         </h3></div>
      
-        <%= link_to "Profile", ownerprofile_path, class:"item2"%>
+
+        <%= link_to "Profile", edit_ownerprofile_path(@user), class:"item2"%>
         <%= link_to "Add BillBoard", addbillboard_path, class:"item2"%>
-        <b><%= link_to "Manage BillBoards", showboards_path, class:"item2"%></b>
-        <div class='item'>Payment Details</div>
-        <div class='item'>Book Request</div>
-        
-        <div class='item'>Booked BillBoards</div>
+        <div class='item'><b>Manage BillBoards</b></div>
+        <%= link_to "Booking Requests", viewrequest_viewrequests_path, class:"item2"%>
+        <%= link_to "Booked BillBoards", ownerbooked_path, class:"item2"%>
+        <%= link_to "Payment Details", bankdetails_path, class:"item2"%>
+
     </div>
 
 
@@ -74,8 +75,12 @@
                     <td> <%=board.location %></td>
                     <td>
                     <%= link_to "Edit", edit_showboard_path(board.id),class: "btn btn-primary btn-user"%>
+                    <% if board.status != "booked" %>
+                        <%= button_to "Delete", showboard_path(board.id) , method: :delete,form: { data: {confirm: "Are you sure?" } } , class: "btn btn-danger btn-user" %></td>
+                    <% else %>
+                        <div></div>
+                    <% end %>
                     
-                    <%= button_to "Delete", showboard_path(board.id) , method: :delete,form: { data: {confirm: "Are you sure?" } } , class: "btn btn-danger btn-user" %></td>
                     
                     </tr>
                         <%end%>

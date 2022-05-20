@@ -16,14 +16,17 @@
 <div class="dash-content">
     <div class="sidebar">
     
-<div><h3 style="margin:40px">Pepsi</h3></div>
+<div><h3 style="margin:40px">
+  <% if @user %>
+    <%= @user.company_name %>
+  <% end %> 
+</h3></div>
 
         
-        <div class='item'>Profile</div>
-        <div class='item'>View All Billboads</div>
-        
-        <%= link_to "Pending Requests", pending_path, class:"item"%>
-        <%= link_to "Book BillBoard", viewbillboards_path, class:"item"%>
+        <%= link_to "Profile", edit_clientprofile_path(@user), class:"item2"%>
+        <%= link_to "Book BillBoard", viewbillboards_path, class:"item2"%>
+        <%= link_to "Requests", pending_path, class:"item2"%>
+        <%= link_to "Booked Billboards", clientbooked_path, class:"item2"%>
 
     </div>
     <div class='item-data'></div>

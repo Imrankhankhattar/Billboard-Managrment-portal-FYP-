@@ -37,24 +37,25 @@
                         <div class="card-body">
                             <h3 class="text-center">Upload Payment Details</h3>
                             <hr>
-
-                            <%= form_with do |form|%>
+                            <%= form_with model: @BoardPayment,url:pay_path, local: true do |form|%>
+                                <%= form.hidden_field :client_board_id ,:value=>(@booking_id) %>
+                                
                                 <div class="form-group">
                                     <label for="cc_bank">Bank</label>
-                                    <%= form.select :desired_attribute, ['Allied Bank', 'HBL','MCB','BOP'],{ include_blank: "Select Bank" }, { class: 'form-control' }%>
+                                    <%= form.select :bank_name, ['Allied Bank', 'HBL','MCB','BOP',Easypaisa, Jazzcash],{ include_blank: "Select Bank" }, { class: 'form-control' }%>
                                 </div>
                                 <div class="form-group">
                                     <label for="cc_name">Account Name</label>
-                                    <%= form.text_field :name ,class: "form-control",required: true,maxlength:"50" %>
+                                    <%= form.text_field :account_name ,class: "form-control",required: true,maxlength:"50" %>
                                 </div>
                                 <div class="form-group">
                                     <label>Account Number</label>
-                                    <%= form.text_field :name ,class: "form-control",required: true,maxlength:"20" %>
+                                    <%= form.text_field :account_number ,class: "form-control",required: true,maxlength:"20" %>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-4">
                                         <div class="book-fields"><%= form.label :startdate_datepicker, "Payment Date" %>
-                                        <%= form.date_field :paymentdate, "data-provide" => 'datepicker' %></div>
+                                        <%= form.date_field :payment_date, "data-provide" => 'datepicker' %></div>
                                     </div>
                                     <div class="col-md-4">
 
@@ -69,7 +70,7 @@
                                 <div class="form-inline">
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text">pkr</span></div>
-                                        <input type="text" class="form-control text-right" id="exampleInputAmount" placeholder="39">
+                                        <%= form.text_field :amount ,class:"form-control text-right",required: true,maxlength:"20",placeholder:"3900" %>
                                         <div class="input-group-append"><span class="input-group-text">.00</span></div>
                                     </div>
                                 </div>
@@ -77,16 +78,15 @@
                                 <div class="image">
                                     <div><label for="">Upload Payment Slip</label></div>
                                     
-                                    <%= form.file_field :image, accept: "image/png,image/jpeg,image/jpg", class:"upload-icon"%>
+                                    <%= form.file_field :payment_slip, accept: "image/png,image/jpeg,image/jpg", class:"upload-icon"%>
                                 </div>
-
                                 <hr>
                                 <div class="form-group row">
                                     <div class="col-md-6">
-                                        <button type="reset" class="btn btn-default btn-lg btn-block">Back</button>
+                                        <%= link_to "Back",pending_path ,class:"btn btn-primary next" %>
                                     </div>
                                     <div class="col-md-6">
-                                        <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
+                                        <button type="submit" class="btn btn-success next">Submit</button>
                                     </div>
                                 </div>
                             <%end%>

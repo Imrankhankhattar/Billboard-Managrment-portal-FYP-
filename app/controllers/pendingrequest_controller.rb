@@ -5,6 +5,7 @@ class PendingrequestController < ApplicationController
     def create
 
         @booking = ClientBoard.new(input_params)
+     
             if @booking.save!
                 redirect_to pending_path
             else

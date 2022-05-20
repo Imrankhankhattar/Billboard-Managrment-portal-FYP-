@@ -28,9 +28,7 @@
 <div class="dash-content">
     <div class="sidebar">
         <div class="company-name"><h3>
-        <% if @user %>
-            <%= @user.company_name %>
-        <% end %> 
+       
 
         </h3></div>
         <%= link_to "Profile", ownerprofile_path, class:"item2"%>
@@ -43,7 +41,7 @@
 
 
 
-    <div class='item-data-profile'>
+    <div class='item-data-ownerpayment'>
 
 
     <div class="card">
@@ -81,13 +79,12 @@ for (var i=0; i<inputs.length; i++)
     var name=document.getElementById('name').value;
     var cname=document.getElementById('cname').value;
     var contact=document.getElementById('contact').value;
-    var address=document.getElementById('address').value;
-    $.post("ownerprofile",
+    
+    $.post("ownerpayment",
         {
-            username: name,
-            company_name: cname,
-            contact:contact,
-            address:address
+            bank: name,
+            acc_name: cname,
+            acc_number:contact,
         });   
 }     
     });

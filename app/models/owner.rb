@@ -5,5 +5,6 @@ class Owner < ApplicationRecord
   attr_accessor :password_confirmation
 
   has_many :boards
+  has_one :owner_bank_detail
 
 end

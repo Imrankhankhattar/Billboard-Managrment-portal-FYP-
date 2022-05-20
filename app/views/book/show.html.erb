@@ -27,7 +27,6 @@ else{
 }
 
 }
-
 </script>
 </head>
 
@@ -38,17 +37,10 @@ else{
       <%= image_tag('1.png', :class => "logoimg") %>
       <h3 class="title"> Out of Home</h3>
   </div>
-  <% if @board %>
-    <%= @board.id%>
-<% end %>
-  <% if @user %>
-    <%= @user.id%>
-<% end %>
+
 
   <div>
-  <% if @user %>
-    <%= button_to "Logout" , logout_path,method: :delete %>
-<% end %>  
+
   </div>
 </div>
   
@@ -86,23 +78,24 @@ else{
             </div>
 
             <div class="book-fields"><%= form.label :startdate, "Start Date" %>
-              <%= form.date_field :start_date, "data-provide" => 'datepicker', :class=>'book-input' %></div>
-
+              <%= form.date_field :start_date, "data-provide" => 'datepicker', :class=>'book-input' ,:min=>'2022-05-20'%></div>
+            <%= form.hidden_field :diff ,:value=>"1" %>
             <div class="book-fields"><%= form.label :enddate, "End Date : " %>
-              <%= form.date_field :end_date, "data-provide" => 'datepicker', :class=>'book-input' ,:onblur=>"display();" %></div>
+              <%= form.date_field :end_date, "data-provide" => 'datepicker', :class=>'book-input' ,:onblur=>"display();",:min=>'2022-05-20' %></div>
               
             <div class="book-fields">
-            <p><b>Upload Content : </b>Vedio/Image</p>
-            <%= form.file_field :image, accept: "image/png,image/jpeg,.mp4", class:"upload-icon"%>
+            <p><b>Upload Content : </b>Video/Image</p>
+            <%= form.file_field :video, accept: "image/png,image/jpeg,.mp4", class:"upload-icon"%>
             </div>
             <div class="book-fields" > 
             
              <%= form.submit "Next" ,class: "btn btn-primary next",onclick:"change();"%>
              </div>
-
+             
             <%end%>
+            
     </div>
-    <div class='item-data'></div>
+    <div class='item-data-boardimage'><%=image_tag(@board.image,width:"1000px")%></div>
 </div>
 </body>
 

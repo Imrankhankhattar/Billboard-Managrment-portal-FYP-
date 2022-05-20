@@ -21,13 +21,12 @@
         <% end %> 
 
         </h3></div>
-        <%# <%= link_to "Profile", edit_ownerprofile_path(@user.id), class:"item2"%> %>
-        
-        <%# <%= link_to "Add BillBoard", addbillboard_path, class:"item2"%> %>
-        <%# <%= link_to "Manage BillBoards", showboards_path, class:"item2"%> %>
-        <div class='item'>Payment Details</div>
-        <div class='item'>Booking Request</div>
+        <div class='item'>Profile</div>
+        <div class='item'>Add BillBoard</div>
+        <div class='item'>Manage BillBoards</div>
+        <div class='item'><b>Booking Requests</b></div>
         <div class='item'>Booked BillBoards</div>
+        <div class='item'>Payment Details</div>
     </div>
 
     <div class='item-data-openrequest'>
@@ -59,16 +58,9 @@
                                     <tr class="d-flex">
                                         <td class="col-5"><b>Location</b></td>
                                         <td class="col-7"><%=@request_detail.board.location%></td>
-                                        <%if @request_detail.video.attached?%>
-                                            <% if @request_detail.video.content_type.include('mp4') %>
-                                            <div style="width:400px; height:300px;">
-                                            <%=video_tag url_for(@request_detail.video),style:"width:400px; height:300px;",controls: true%>
-                                            </div>
-                                            <% else %>
-                                            <%=image_tag url_for(@request_detail.video)%>
-                                            <%end%>
-                                        <%end%>
+
                                     </tr>
+                                    
                                     <tr class="d-flex">
                                         <td class="col-5"><b>Booking Start Date</b></td>
                                         <td class="col-7"><%=@request_detail.start_date%></td>
@@ -81,12 +73,29 @@
                                         <td class="col-5"><b>Bill</b></td>
                                         <td class="col-7"><%=@request_detail.total_bill%></td>
                                     </tr>
-                                   
+                                    
+                                    <tr class="d-flex">
+                                    <td class="col-5"><b>Content</b></td>
+                                    <% if @request_detail.video.attached? %>
+                                        <% if @request_detail.video.content_type.include?("image") %>
+                                            <td class="col-7"><%=image_tag(@request_detail.video,width:"400px",)%></td>
+                                        <% else %>
+                                            <td class="col-7"><%=video_tag url_for(@request_detail.video),controls: true ,width: 400 %></td>
+                                        <% end %>
+
+                                        
+                                    <% end %>    
+
+
+                                    
+                                
+                                    </tr>
                                     <tr class="d-flex">
 
-                                        <td class="col-6"></td>
+                                        <td class="col-6"><%= link_to "Reject", {:action => "rejectcontent",  :id=>@request_detail.id} ,class:"btn btn-danger next" %></td>
 
                                         <td class="col-6"><%= link_to "Approve", {:action => "approvecontent",  :id=>@request_detail.id} ,class:"btn btn-primary next" %></td>
+                                        
 
                                     
                                     </tr>

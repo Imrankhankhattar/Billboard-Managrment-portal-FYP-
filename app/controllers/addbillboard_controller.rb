@@ -8,7 +8,9 @@ class AddbillboardController < ApplicationController
     def addboard
             @board = Board.new(board_params)
             @user = Owner.find_by(id: session[:user_id])
+            @count = OwnerBankDetail.where(owner_id: @user.id).count
             if @board.save!
+                    
                 redirect_to owner_path
             else
                 flash[:error] = 'User Not Registered'

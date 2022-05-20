@@ -138,6 +138,21 @@ $.ajax({
 
 
 
+        <%if @request_detail.video.attached?%>
+            <% if @request_detail.video.content_type.include('mp4') %>
+            <div style="width:400px; height:300px;">
+            <%=video_tag url_for(@request_detail.video),style:"width:400px; height:300px;",controls: true%>
+            </div>
+            <% else %>
+            <%=image_tag url_for(@request_detail.video)%>
+            <%end%>
+        <%end%>
+
+
+        <video controls width="480" height="200">
+                                    <source src="<%=rails_blob_url(@request_detail.video)%>" type="<%= @request_detail.content_type%>"/>
+                                    </video>
+
 
 
 

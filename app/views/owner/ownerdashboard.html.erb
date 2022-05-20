@@ -22,12 +22,12 @@
 
         </h3></div>
         <%= link_to "Profile", edit_ownerprofile_path(@user), class:"item2"%>
-        
         <%= link_to "Add BillBoard", addbillboard_path, class:"item2"%>
         <%= link_to "Manage BillBoards", showboards_path, class:"item2"%>
-        <div class='item'>Payment Details</div>
-        <%= link_to "Booking Requests", viewrequest_viewrequests_path, class:"item"%>
-        <div class='item'>Booked BillBoards</div>
+        <%= link_to "Booking Requests", viewrequest_viewrequests_path, class:"item2"%>
+        <%= link_to "Booked BillBoards", ownerbooked_path, class:"item2"%>
+        <%= link_to "Payment Details", bankdetails_path, class:"item2"%>
+
     </div>
     <div class='item-data'></div>
 </div>

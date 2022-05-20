@@ -17,14 +17,19 @@
 </div>
 
 
-<div class="dash-content">
-    <div class="sidebar">
-    <div><h3 style="margin:40px">Pepsi</h3></div>
+<div class="">
+    <div class="sidebar-viewbillboards">
+    <div><h3 style="margin:40px">
+    <% if @user %>
+        <%= @user.company_name %>
+      <% end %> 
+    </h3></div>
 
         
     <div class='item'>Profile</div>
-    <div class='item'>View All Billboads</div>
-    <div class='item'>Book Billboard</div>
+    <div class='item'><b>Book Billboard</b></div>
+    <div class='item'>Requests</div>
+    <div class='item'>Booked Billboards</div>
     </div>
 
 
@@ -38,10 +43,13 @@
         <div class="table-wrapper">
 
         <%= form_with do |form|%>
-            <%= form.text_field :input , {:id => 'search1'} %>
-            <%= form.select :search2, ['alpha', 'gamma'],{ include_blank: "Select Company" }%>
-            <%= form.select :search3, ['Lahore', 'available', "Jehlam"],{ include_blank: "Select City" }%>
-            <%= form.select :sort, ['Price', 'Viewership'],{ include_blank: "Sort by" }%>
+            <%= form.label :search1, "Search Name : " %>
+            <%= form.text_field :input , {:id => 'search1'}%>
+            <%= form.label :search2, "Search Company : " %>
+            <%= form.text_field :input , {:id => 'search2'}%>
+            <%= form.label :search3, "Search City : " %>
+            <%= form.text_field :input , {:id => 'search3'}%>
+
          <%end%>
 
 </select>

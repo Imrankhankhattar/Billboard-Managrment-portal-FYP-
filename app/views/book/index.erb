@@ -38,7 +38,12 @@ else{
 }
 
 }
+var date = new Date();
+var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
+$('#startdate').datepicker({ 
+    minDate: today
+});
 </script>
 </head>
 
@@ -94,7 +99,7 @@ else{
            
             <div class="book-fields">
             <p><b>Upload Content : </b>Vedio/Image</p>
-            <%= form.file_field :image, accept: "image/png,image/jpeg,.mp4", class:"upload-icon"%>
+            <%= form.file_field :video, accept: "image/png,image/jpeg,.mp4", class:"upload-icon"%>
             </div>
 
             <div class="book-fields" > <%= link_to "Next", pendingrequest_path,method: :post , class:" btn btn-primary next"%></div>
@@ -115,4 +120,3 @@ else{
 
 
 </body>
-

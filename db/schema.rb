@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_24_114725) do
+ActiveRecord::Schema.define(version: 2022_05_20_091029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,18 @@ ActiveRecord::Schema.define(version: 2022_04_24_114725) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "board_payments", force: :cascade do |t|
+    t.string "bank_name"
+    t.string "account_name"
+    t.bigint "account_number"
+    t.date "payment_date"
+    t.integer "amount"
+    t.bigint "client_board_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_board_id"], name: "index_board_payments_on_client_board_id"
   end
 
   create_table "boards", force: :cascade do |t|
@@ -82,6 +94,16 @@ ActiveRecord::Schema.define(version: 2022_04_24_114725) do
     t.string "password_digest"
   end
 
+  create_table "owner_bank_details", force: :cascade do |t|
+    t.string "bank"
+    t.string "acc_name"
+    t.integer "acc_number"
+    t.bigint "owner_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["owner_id"], name: "index_owner_bank_details_on_owner_id"
+  end
+
   create_table "owners", force: :cascade do |t|
     t.string "email"
     t.string "company_name"
@@ -94,7 +116,9 @@ ActiveRecord::Schema.define(version: 2022_04_24_114725) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "board_payments", "client_boards"
   add_foreign_key "boards", "owners"
   add_foreign_key "client_boards", "boards"
   add_foreign_key "client_boards", "clients"
+  add_foreign_key "owner_bank_details", "owners"
 end

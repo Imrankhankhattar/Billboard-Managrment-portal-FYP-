@@ -4,6 +4,7 @@ class ShowboardsController < ApplicationController
         @board = Board.all
         @user = Owner.find_by(id: session[:user_id])
         @board2 = Board.where(company_name: @user.company_name)
+        # @count = ClientBoard.where(board_id: @board).count
     end
     def edit
         @board = Board.find(params[:id])
